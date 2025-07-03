@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Car App</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="hero">Admin Dashboard</div>
+    <div class="container">
+        <!--<h2>Customer Interests (vulnerable to formula injection)</h2> -->
+		<h2>Customer Interests </h2>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>ID</th>
+                <th>Car ID</th>
+                <th>Customer ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Other Info</th>
+            </tr>
+            <% interests.forEach(entry => { %>
+                <tr>
+                    <td><%= entry.id %></td>
+                    <td><%= entry.car_id %></td>
+                    <td><%= entry.customer_id %></td>
+                    <td><%= entry.first_name %></td>
+                    <td><%= entry.last_name %></td>
+                    <td><%= entry.contact_number %></td>
+                    <td><%= entry.address %></td>
+                    <td><%= entry.email %></td>
+                    <td><%= entry.phone_number %></td>
+                    <td><%= entry.other_info %></td>
+                </tr>
+            <% }); %>
+        </table>
+        <br>
+        <!-- <a href="/download-xls">Download XLS (vulnerable)</a><br><br> -->
+		<!-- <a href="/download-xls">Download XLS (vulnerable)</a><br><br> -->
+		<a href="/download-csv">Download CSV (vulnerable)</a><br><br>
+        <!-- <a href="/">Home</a> -->
+    </div>
+</body>
+</html>

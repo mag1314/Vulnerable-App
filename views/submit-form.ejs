@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Form - Car App</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="hero">Submit Your Information</div>
+    <div class="container">
+        <h2>Fill in your details for the car: <%= car.name %></h2>
+        <form action="/interest" method="POST">
+            <input type="hidden" name="user" value="<%= user %>">
+            <input type="hidden" name="car_id" value="<%= car.id %>">
+
+            <label>First Name:</label>
+            <input type="text" name="first_name" required />
+
+            <label>Last Name:</label>
+            <input type="text" name="last_name" required />
+
+            <label>Contact Number:</label>
+            <input type="text" name="contact_number" required />
+
+            <label>Address:</label>
+            <textarea name="address" required></textarea>
+
+            <label>Email:</label>
+            <input type="email" name="email" required />
+
+            <label>Phone Number:</label>
+            <input type="text" name="phone_number" required />
+
+            <label>Other Info (optional):</label>
+            <textarea name="other_info"></textarea>
+
+            <button type="submit">Submit Interest</button>
+        </form>
+        <br>
+        <a href="/cars?user=<%= user %>">Back to Cars</a>
+    </div>
+</body>
+</html>

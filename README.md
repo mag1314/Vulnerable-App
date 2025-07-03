@@ -36,3 +36,16 @@ INSERT INTO cars (name, price) VALUES ('Tesla Model 3', 50000), ('BMW X5', 60000
 
 
 npm install express mysql2 bcryptjs xlsx body-parser ejs csv-writer
+
+
+// Get customer ID using username
+    db.query('SELECT id FROM customers WHERE username = ?', [user], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error fetching customer ID.');
+        }
+        if (results.length === 0) {
+            return res.status(400).send('User not found.');
+        }
+
+        const customer_id = results[0].id; // get numeric id

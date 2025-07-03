@@ -38,7 +38,20 @@ INSERT INTO cars (name, price) VALUES ('Tesla Model 3', 50000), ('BMW X5', 60000
 npm install express mysql2 bcryptjs xlsx body-parser ejs csv-writer
 
 
-// Get customer ID using username
+app.post('/interest', (req, res) => {
+    const {
+        user, // this is username
+        car_id,
+        first_name,
+        last_name,
+        contact_number,
+        address,
+        email,
+        phone_number,
+        other_info
+    } = req.body;
+
+    //Get customer ID using username
     db.query('SELECT id FROM customers WHERE username = ?', [user], (err, results) => {
         if (err) {
             console.error(err);
@@ -49,3 +62,18 @@ npm install express mysql2 bcryptjs xlsx body-parser ejs csv-writer
         }
 
         const customer_id = results[0].id; // get numeric id
+
+        // Now insert using the numeric customer_id
+        db.query(
+            'INSERT INTO interests (car_id, customer_id, first_name, last_name, contact_number, address, email, phone_number, other_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [car_id, customer_id, first_name, last_name, contact_number, address, email, phone_number, other_info],
+            (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Error submitting interest.');
+                }
+                res.send('Interest submitted successfully.');
+            }
+        );
+    });
+});

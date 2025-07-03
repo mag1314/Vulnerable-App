@@ -33,3 +33,6 @@ CREATE TABLE interests (
 );
 
 INSERT INTO cars (name, price) VALUES ('Tesla Model 3', 50000), ('BMW X5', 60000), ('Audi A4', 45000);
+
+
+npm install express mysql2 bcryptjs xlsx body-parser ejs csv-writer

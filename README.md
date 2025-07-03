@@ -77,3 +77,40 @@ app.post('/interest', (req, res) => {
         );
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/cars', (req, res) => {
+    const username = req.query.user;
+    db.query('SELECT id FROM customers WHERE username = ?', [username], (err, results) => {
+        if (err) throw err;
+        if (results.length === 0) return res.send('User not found');
+
+        const customer_id = results[0].id;
+
+        db.query('SELECT * FROM cars', (err, cars) => {
+            if (err) throw err;
+            res.render('cars', { cars, customer_id }); // Pass customer_id
+        });
+    });
+});
